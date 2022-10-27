@@ -8,17 +8,8 @@ steps:
   - |
     podname=$(echo ${_HEAD_BRANCH} | tr '[:upper:]' '[:lower:]')
     echo $podname
-    sed -i "s/BRANCH_NAME/$podname/g" manifests/pod.yaml
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=manifests/setup/
-  - --location=europe-west1
-  - --namespace=${_NAMESPACE}
-  - --cluster=${PROJECT_ID}-cluster
-  timeout: 600s
-  
+    sed -i "s/BRANCH_NAME/$podname/g" manifests/2-pod.yaml
+ 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
