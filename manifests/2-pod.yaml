@@ -7,7 +7,7 @@ spec:
   serviceAccountName: postman-runner-serviceaccount
   containers:
   - name: postman-runner
-    image: postman/newman
+    image: europe-docker.pkg.dev/dft-rsss-findtransptdata-dev/dft-nap/postmanrunner
     command: ["newman"]
     args: ["run","https://www.postman.com/collections/9e38ea5fae83c9d3b603","-e","/srv/config/env.json","--insecure"]
     resources:
