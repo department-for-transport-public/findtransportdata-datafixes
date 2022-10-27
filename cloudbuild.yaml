@@ -1,6 +1,6 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/git'
+- name: 'gcr.io/cloud-builders/gke-deploy'
   id: Write Datafix branch
   entrypoint: 'bash'
   args:
