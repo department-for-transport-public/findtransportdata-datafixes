@@ -6,5 +6,5 @@ spec:
   provider: gcp
   parameters:
     secrets: |
-      - resourceName: "projects/$PROJECT_ID/secrets/postman-config-secret/versions/latest"
+      - resourceName: "projects/$PROJECT_NUMBER/secrets/postman-config-secret/versions/latest"
         path: "env.json"
