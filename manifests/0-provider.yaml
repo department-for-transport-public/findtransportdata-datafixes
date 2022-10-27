@@ -8,3 +8,4 @@ spec:
     secrets: |
       - resourceName: "projects/912049734202/secrets/postman-config-secret/versions/latest"
         path: "env.json"
+        
