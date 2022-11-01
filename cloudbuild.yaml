@@ -9,6 +9,8 @@ steps:
     podname=$(echo ${_HEAD_BRANCH} | tr '[:upper:]' '[:lower:]')
     echo $podname
     sed -i "s/BRANCH_NAME/$podname/g" manifests/1-pod.yaml
+    sed -i "s/$PROJECT_ID/${PROJECT_ID}/g" manifests/1-pod.yaml
+    sed -i "s/$PROJECT_ID/${PROJECT_ID}/g" manifests/0-provider.yaml
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
