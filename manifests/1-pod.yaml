@@ -17,7 +17,7 @@ spec:
   - name: postman-runner
     image: postman/newman
     command: ["newman"]
-    args: ["run","https://www.getpostman.com/collections/7ec2b48f6b5af89ca37a","-e","/srv/config/env.json","--insecure"]
+    args: ["run","https://www.getpostman.com/collections/7ec2b48f6b5af89ca37a","-e","/srv/config/env.json","--insecure", "--verbose"]
     resources:
       limits:
         cpu: 500m
