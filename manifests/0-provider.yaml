@@ -8,3 +8,4 @@ spec:
     secrets: |
       - resourceName: "projects/dft-rsss-findtransptdata-dev/secrets/postman-config-secret/versions/latest"
         path: "env.json"
+        
