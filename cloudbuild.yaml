@@ -8,14 +8,14 @@ steps:
   - |
     podname=$(echo ${_HEAD_BRANCH} | tr '[:upper:]' '[:lower:]')
     echo $podname
-    sed "s/BRANCH_NAME/$podname/g" manifests/1-pod.yaml > /workspace/1-pod.yaml
-    sed -i "s/$PROJECT_ID/${PROJECT_ID}/g" /workspace/1-pod.yaml
-    sed "s/$PROJECT_ID/${PROJECT_ID}/g" manifests/0-provider.yaml > /workspace/0-provider.yaml
+    sed "s/BRANCH_NAME/$podname/g" manifests/1-pod.yaml > /workspace/manifests/1-pod.yaml
+    sed -i "s/$PROJECT_ID/${PROJECT_ID}/g" /workspace/manifests/1-pod.yaml
+    sed "s/$PROJECT_ID/${PROJECT_ID}/g" manifests/0-provider.yaml > /workspace/manifests/0-provider.yaml
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=/workspace/
+  - --filename=/workspace/manifests/
   - --location=europe-west1
   - --namespace=${_NAMESPACE}
   - --cluster=${PROJECT_ID}-cluster
