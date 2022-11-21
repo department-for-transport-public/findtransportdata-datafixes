@@ -37,4 +37,5 @@ spec:
         readOnly: true
         volumeAttributes:
           secretProviderClass: "gcp-secret-provider"
+          
   
