@@ -2,20 +2,26 @@ steps:
 
 - name: 'gcr.io/cloud-builders/git'
   id: Write Datafix branch
+  volumes:
+  - name: 'manifestsvolume'
+    path: '/data'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
     podname=$(echo ${_HEAD_BRANCH} | tr '[:upper:]' '[:lower:]')
     echo $podname
-    sed "s/BRANCH_NAME/$podname/g" manifests/1-pod.yaml > /workspace/1-pod.yaml
-    sed -i "s/$PROJECT_ID/${PROJECT_ID}/g" /workspace/1-pod.yaml
-    sed "s/$PROJECT_ID/${PROJECT_ID}/g" manifests/0-provider.yaml > /workspace/0-provider.yaml
+    sed "s/BRANCH_NAME/$podname/g" manifests/1-pod.yaml > /data/1-pod.yaml
+    sed -i "s/PROJECT_ID/${PROJECT_ID}/g" /data/1-pod.yaml
+    sed "s/PROJECT_ID/${PROJECT_ID}/g" manifests/0-provider.yaml > /data/0-provider.yaml
 
 - name: "gcr.io/cloud-builders/gke-deploy"
+  volumes:
+    - name: 'manifestsvolume'
+      path: '/data'
   args:
   - run
-  - --filename=/workspace/
+  - --filename=/data/
   - --location=europe-west1
   - --namespace=${_NAMESPACE}
   - --cluster=${PROJECT_ID}-cluster
